@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elpida | Login</title>
+  <link rel="stylesheet" href="../css/cadastro.css">
+  <link rel="fonte" href="https://fonts.googleapis.com">
+  <link rel="fonte2" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="../html/index.html">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="../imagem/logo-vetor.svg" alt="Logo">
+        </div>
+        <div class="brand-text">
+          <strong>ELPIDA</strong>
+          <span>Proteção & Acolhimento</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="../html/index.html">Início</a>
+        <a href="../html/sobre.html">Sobre</a>
+        <a href="crud.html">Recursos</a>
+        <a href="../html/contato.html">Contato</a>
+        <a class="active" href="../html/login.html">Login</a>
+        <a href="../html/cadastro.html">Criar conta</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="shape"></div>
+    <div class="cadastro1">
+      <h1>Bem vindo(a) de volta!</h1>
+
+      <form id="loginForm">
+        <label>Email</label>
+        <div class="input-box">
+          <input type="email" id="loginEmail" placeholder="Seu email aqui" required>
+        </div>
+
+        <label>Senha</label>
+        <div class="input-box">
+          <input type="password" id="loginPassword" placeholder="Sua senha aqui" required>
+        </div>
+
+        <div class="Confirmar">
+          <input type="checkbox" id="rememberCheckbox">
+          <p>Lembrar de mim</p>
+        </div>
+
+        <button type="submit" class="criarconta-btn">Entrar</button>
+
+        <div class="line"></div>
+
+        <div class="ota-buttons">
+          <button type="button" class="google-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg">
+            <p>Entrar com Google</p>
+          </button>
+          <button type="button" class="guest-btn" onclick="window.location.href='../html/index.html'">Entrar sem
+            conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const rememberCheckbox = document.getElementById('rememberCheckbox');
+
+      const result = authManager.login(email, password);
+
+      if (result.success) {
+        authManager.showMessage(result.message, 'success');
+        setTimeout(() => {
+          window.location.href = '../html/index.html';
+        }, 1500);
+      } else {
+        authManager.showMessage(result.message, 'error');
+      }
+    });
+  </script>
+
+<footer class="footer">
+  © 2026 Elpida — Projeto acadêmico de apoio e conscientização.
+</footer>
+
+  <script src="../js/auth.js"></script>
+</body>
+
+</html>
